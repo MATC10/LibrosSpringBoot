@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Libros</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--El script del boostrap puesto con el fragments-->
+    <div th:insert="components/fragments :: head"></div>
+
+</head>
+<body>
+<header>
+
+    <!-- Navbar content puesto con el fragments -->
+    <div th:insert="components/fragments :: nav_bar"></div>
+</header>
+
+
+<div class="container">
+    <h1 class="animate__animated animate__jello">Librería</h1>
+    <div class="row">
+        <div class="card mb-3" th:each="libro:${listaLibros}" style="width: 18rem;">
+            <img th:src="'/img/' + ${libro.imagen}" class="card-img-top img-thumbnail" th:alt="'Cartel de: ' + ${libro.titulo}" style="height: 150px">
+            <div class="card-body">
+                <h5 th:text="${libro.titulo}" class="card-title"></h5>
+                <p th:text="${libro.resumen.length < 5 ? libro.resumen.substring(0, 4) : libro.resumen.substring(0, 20)}" class="card-text"></p>
+                <a th:href="'/libros/' + ${libro.id}" class="btn btn-primary">Ir al libro</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h2>Los 3 últimos libros añadidos en nuestra web...</h2>
+    <div class="row">
+        <div class="card mb-3" th:each="libro:${ultimosLibros}" style="width: 18rem;">
+            <img th:src="'/img/' + ${libro.imagen}" class="card-img-top img-thumbnail" th:alt="'Cartel de: ' + ${libro.titulo}" style="height: 150px">
+            <div class="card-body">
+                <h5 th:text="${libro.titulo}" class="card-title"></h5>
+                <p th:text="${libro.resumen.length < 5 ? libro.resumen.substring(0, 4) : libro.resumen.substring(0, 20)}" class="card-text"></p>
+                <a th:href="'/libros/' + ${libro.id}" class="btn btn-primary">Ir al libro</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- footer y script del boostrap puesto con el fragments -->
+<div th:insert="components/fragments :: footer"></div>
+</body>
+</html>

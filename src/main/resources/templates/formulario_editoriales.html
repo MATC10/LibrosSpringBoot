@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Formulario editoriales</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--El script del boostrap puesto con el fragments-->
+    <div th:insert="components/fragments :: head"></div>
+
+</head>
+<body>
+<header>
+
+    <!-- Navbar content puesto con el fragments -->
+    <div th:insert="components/fragments :: nav_bar"></div>
+</header>
+
+
+<!--PARA QUE SE PUEDAN SUBIR ARCHIVOS CON UN FORMULARIO SE NECESITA "multipart/form-data"-->
+<!--EL TERNARIO ES PARA QUE CUANDO LA PELICULA TENGA ID SE MODIFIQUE, Y SI NO TIENE SE AÑADE-->
+<!--Vamos a usar la misma plantilla para añadir y para modificar, para hacer la diferenciación
+hago el ternario-->
+<!--Las url/endpoint del th:action serán POSTMAPPING en nuestro controlador-->
+<!--En th:object pongo el objeto que envío desde el controlador-->
+<div class="container">
+    <h1 class="mb-3 animate__animated animate__jello" >Editorial</h1>
+    <form th:action="${editorial.id != 0} ? @{/crud/editoriales/postupdate} : @{/crud/editoriales/postadd}"
+          method="post" enctype="multipart/form-data" th:object="${editorial}">
+        <div class="mb-3">
+            <input type="hidden" class="form-control" th:field="*{id}">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" th:field="*{nombre}" value="Munich" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+
+<p><a href="/crud/editoriales" class="btn btn-primary">Volver al listado</a></p>
+
+</body>
+</html>

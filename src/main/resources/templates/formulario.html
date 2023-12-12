@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Formulario</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--El script del boostrap puesto con el fragments-->
+    <div th:insert="components/fragments :: head"></div>
+
+</head>
+<body>
+<header>
+
+    <!-- Navbar content puesto con el fragments -->
+    <div th:insert="components/fragments :: nav_bar"></div>
+</header>
+
+
+<!--PARA QUE SE PUEDAN SUBIR ARCHIVOS CON UN FORMULARIO SE NECESITA "multipart/form-data"-->
+<!--EL TERNARIO ES PARA QUE CUANDO LA PELICULA TENGA ID SE MODIFIQUE, Y SI NO TIENE SE AÑADE-->
+<!--Vamos a usar la misma plantilla para añadir y para modificar, para hacer la diferenciación
+hago el ternario-->
+<!--Las url/endpoint del th:action serán POSTMAPPING en nuestro controlador-->
+<!--En th:object pongo el objeto que envío desde el controlador-->
+<div class="container">
+    <h1 class="mb-3 animate__animated animate__jello" >Libros</h1>
+
+    <table class="table striped">
+        <form th:action="${libro.id != 0} ? @{/crud/libros/postupdate} : @{/crud/libros/postadd}"
+              method="post" enctype="multipart/form-data" th:object="${libro}">
+            <div class="container">
+                <div class="row">
+                    <!--Guardamos el id de la película-->
+                    <input type="hidden" class="form-control" th:field="*{id}">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="titulo">Título</label>
+                            <input type="text" class="form-control" name="titulo" id="titulo" th:field="*{titulo}"
+                                   value="Munich" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="resumen">Sinopsis</label>
+                            <textarea class="form-control" name="resumen" id="resumen" rows="3" th:field="*{resumen}"
+                                      required>La venganza</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" class="form-control" name="fecha" id="fecha" th:field="*{fecha}"
+                                   th:format="'dd-MM-YYYY'">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="imagen">Imagen</label>
+                            <!--EL th:value es para que salga en el formulario el valor que tenía para actualizarlo-->
+                            <input type="text" class="form-control" name="imagen" id="imagen" accept="image/*" th:value="${libro.imagen}">
+
+                            <div th:if="${libro.imagen}">
+                                <img th:src="'/img/' + ${libro.imagen}" class="img-thumbnail" height="150px" width="100px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="autor">Autor</label>
+                            <input type="text" class="form-control" name="autor" id="autor" th:field="*{autor}"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nacionalidad">Nacionalidad</label>
+                            <select class="form-control" name="nacionalidad" id="nacionalidad"
+                                    th:field="*{nacionalidad}" required>
+                                <option value="">Seleccione una nacionalidad</option>
+                                <option value="España">España</option>
+                                <option value="EE.UU.">Estados Unidos</option>
+                                <option value="Reino Unido">Reino Unido</option>
+                                <option value="Francia">Francia</option>
+                                <option value="Italia">Italia</option>
+                                <option value="Japón">Japón</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <!--SELECCIONO EL NOMBRE DE LA CLASE EDITORIAL-->
+                            <label for="editorial">Editorial</label>
+                            <select class="form-control" name="editorial" id="editorial" th:field="*{editorial}"
+                                    required>
+                                <option value="">Seleccione una editorial</option>
+                                <option th:each="editorial : ${listaEditoriales}" th:value="${editorial.id}"
+                                        th:text="${editorial.nombre}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </table>
+</div>
+
+<p><a href="/crud/libros" class="btn btn-primary">Volver al listado</a></p>
+
+</body>
+</html>

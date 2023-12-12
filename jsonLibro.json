@@ -1,0 +1,26 @@
+[
+  {
+    "titulo": "El Señor de los Anillos",
+    "resumen": "Una historia épica de fantasía",
+    "fecha": "01/01/2000",
+    "nacionalidad": "Estadounidense",
+    "imagen": "imagen1.jpg",
+    "autor": "J.R.R. Tolkien"
+  },
+  {
+    "titulo": "Cien años de soledad",
+    "resumen": "Una saga familiar en un pueblo mágico",
+    "fecha": "15/06/1967",
+    "nacionalidad": "Colombiana",
+    "imagen": "imagen2.jpg",
+    "autor": "Gabriel García Márquez"
+  },
+  {
+    "titulo": "1984",
+    "resumen": "Una distopía sobre el control gubernamental",
+    "fecha": "08/06/1949",
+    "nacionalidad": "Británica",
+    "imagen": "imagen3.jpg",
+    "autor": "George Orwell"
+  }
+]

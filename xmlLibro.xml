@@ -1,0 +1,26 @@
+<libros>
+    <libro>
+        <titulo>Viaje a la Luna</titulo>
+        <resumen>Una aventura espacial emocionante</resumen>
+        <fecha>20/05/1980</fecha>
+        <nacionalidad>Francesa</nacionalidad>
+        <imagen>hp4.jpg</imagen>
+        <autor>Jules Verne</autor>
+    </libro>
+    <libro>
+        <titulo>El Gran Gatsby</titulo>
+        <resumen>Un relato de la alta sociedad en los años 20</resumen>
+        <fecha>10/09/1925</fecha>
+        <nacionalidad>Estadounidense</nacionalidad>
+        <imagen>hp4.jpg</imagen>
+        <autor>F. Scott Fitzgerald</autor>
+    </libro>
+    <libro>
+        <titulo>Don Quijote de la Mancha</titulo>
+        <resumen>Las extravagantes aventuras de un caballero y su escudero</resumen>
+        <fecha>01/01/1605</fecha>
+        <nacionalidad>Española</nacionalidad>
+        <imagen>hp4.jpg</imagen>
+        <autor>Miguel de Cervantes</autor>
+    </libro>
+</libros>
