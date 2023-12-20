@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-@RequestMapping("/libros")
+
 @Controller
+//@RequestMapping("/libros") AQUÍ NO PONGO ESTO PORQUE SINO LA DIRECCIÓN localhost:9000/ se me queda vacía
 public class Principal {
     @Autowired
     ServicioLibros servicioLibros;
@@ -20,7 +21,12 @@ public class Principal {
     @Autowired
     ServicioEditoriales servicioEditoriales;
 
-    @GetMapping("")
+    @GetMapping("/")
+    public String manejarRaiz() {
+        return "redirect:/libros";
+    }
+
+    @GetMapping("/libros")
     public String inicio(Model model){
         //recupera todas las peliculas
         ArrayList<Libro> libros=servicioLibros.findAll();
@@ -33,7 +39,7 @@ public class Principal {
         return "index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/libros/{id}")
     public String libro(@PathVariable long id, Model model){
         Libro libro=servicioLibros.findById(id);
         //El nombre de "pelicula" es el que voy a usar en la vista detalle.html

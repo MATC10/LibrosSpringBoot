@@ -30,4 +30,7 @@ public class ServicioLibros {
         return repositorioLibros.find3Last();
     }
 
+    public ArrayList<Libro> find3First(){
+        return repositorioLibros.find3First();
+    }
 }
